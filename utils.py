@@ -422,7 +422,7 @@ Natural Language Plan:
 #----------------------------------------------------------------------------------------------------------
 
 def get_subquestion(question):
-    file_path = 'SGU-SQL/data/subquestions_dev.json'
+    file_path = './data/subquestions_dev.json'
     with open(file_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     for item in data:

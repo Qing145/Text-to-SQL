@@ -18,10 +18,10 @@ EXPERIMENT = 'question_decomposition'
 TRIES = 2
 
 
-with open("cache/db_schemas.json") as f:
+with open("./cache/db_schemas.json") as f:
     db_schemas = json.load(f)
 
-with open(f"""cache/parsing_tree_{SPLIT}.json""") as f:
+with open(f"""./cache/parsing_tree_{SPLIT}.json""") as f:
     data = json.load(f)
 
 
@@ -64,7 +64,7 @@ def get_response(history_messages):
 def gpt_predict_subquestion(i):
     example = data[i]
     try:
-        with open(f"cache/{SPLIT}_{example['id']}.json", "r") as f:
+        with open(f"./cache/{SPLIT}_{example['id']}.json", "r") as f:
             return
     except:
         pass
@@ -93,7 +93,7 @@ def gpt_predict_subquestion(i):
 
     json_object = json.dumps(json_res, indent=4)
 
-    with open(f"cache/{SPLIT}_{example['id']}.json", "w") as outfile:
+    with open(f"./cache/{SPLIT}_{example['id']}.json", "w") as outfile:
         outfile.write(json_object)
 
 
@@ -111,14 +111,14 @@ while not flag:
 data_with_subquestion = []
 
 for example in data:
-    with open(f"cache/{SPLIT}_{example['id']}.json", "r") as f:
+    with open(f"./cache/{SPLIT}_{example['id']}.json", "r") as f:
         subquestion_json = json.load(f)
         subquestion = " ; ".join(subquestion_json["messages"][2]["content"].split("\n"))
         example["subquestions"] = subquestion
         data_with_subquestion.append(example)
 
 
-with open(f"{SPLIT}.json", "w") as f:
+with open(f"./cache/{SPLIT}.json", "w") as f:
     json.dump(data_with_subquestion, f, indent=4)
 
 
