@@ -18,7 +18,7 @@ EXPERIMENT = 'question_decomposition'
 TRIES = 2
 
 
-with open("db_schemas.json") as f:
+with open("cache/db_schemas.json") as f:
     db_schemas = json.load(f)
 
 with open(f"""cache/parsing_tree_{SPLIT}.json""") as f:
